@@ -1,8 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+//test
+import axios from "axios";
 
 function App() {
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios
+        .get("/todos/1")
+        .then(promise => {
+          //console.log("hello");
+          //setDescription( promise.json() );
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    };
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,7 +35,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          {description}
         </a>
       </header>
     </div>
